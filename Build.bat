@@ -1,1 +1,0 @@
-javac -d bin src\*.java > lastBuildResults.log 2>&1
