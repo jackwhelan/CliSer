@@ -36,3 +36,62 @@ public class Server
 		}
 	}
 }
+
+class WritingThread extends Thread
+{
+	private Socket connection;
+	
+	public WritingThread(Socket con)
+	{
+		connection = con;
+	}
+	
+	public void run()
+	{
+		try
+		{
+			ObjectOutputStream out = new ObjectOutputStream(connection.getOutputStream());
+			String message;
+			Scanner sc = new Scanner(System.in);
+			
+			while(true)
+			{
+				message = sc.nextLine();
+				out.writeObject("Server: " + message);
+			}
+		}
+		catch(Exception ex)
+		{
+			System.err.println(ex);
+		}
+	}
+}
+
+class ReadingThread extends Thread
+{
+	private Socket connection;
+	
+	public ReadingThread(Socket con)
+	{
+		connection = con;
+	}
+	
+	public void run()
+	{
+		try
+		{
+			ObjectInputStream in = new ObjectInputStream (connection.getInputStream());
+			String message;
+			
+			while (true)
+			{
+				message = (String)in.readObject();
+				System.out.println(message);
+			}
+		}
+		catch(Exception ex)
+		{
+			System.err.println(ex);
+		}
+	}
+}
