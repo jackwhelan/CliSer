@@ -89,7 +89,7 @@ class ReadingThread extends Thread
 				System.out.println(message);
 				if (message == "stop")
 				{
-					server.close();
+					close();
 				}
 			}
 		}
