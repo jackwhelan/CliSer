@@ -58,6 +58,10 @@ class WritingThread extends Thread
 			{
 				message = sc.nextLine();
 				out.writeObject("Server: " + message);
+				if (message == "stop")
+				{
+					close();
+				}
 			}
 		}
 		catch(Exception ex)
@@ -87,10 +91,6 @@ class ReadingThread extends Thread
 			{
 				message = (String)in.readObject();
 				System.out.println(message);
-				if (message == "stop")
-				{
-					close();
-				}
 			}
 		}
 		catch(Exception ex)
