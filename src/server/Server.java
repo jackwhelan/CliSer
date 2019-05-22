@@ -60,7 +60,7 @@ class WritingThread extends Thread
 				out.writeObject("Server: " + message);
 				if (message == "stop")
 				{
-					close();
+					connection.close();
 				}
 			}
 		}
