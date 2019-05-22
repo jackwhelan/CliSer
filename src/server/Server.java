@@ -87,6 +87,10 @@ class ReadingThread extends Thread
 			{
 				message = (String)in.readObject();
 				System.out.println(message);
+				if (message == "stop")
+				{
+					server.close();
+				}
 			}
 		}
 		catch(Exception ex)
